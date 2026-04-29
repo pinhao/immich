@@ -423,14 +423,14 @@ export class ThumbnailConfig extends BaseConfig {
 
     if (metadataOverrides.length > 0) {
       // workaround for https://fftrac-bg.ffmpeg.org/ticket/11020
-      options.push('-bsf:v', `${videoStream.codecName}_metadata=${metadataOverrides.join(':')}`);
+      options.push(`-bsf:${videoStream.index}`, `${videoStream.codecName}_metadata=${metadataOverrides.join(':')}`);
     }
 
     return options;
   }
 
   getBaseOutputOptions() {
-    return ['-fps_mode', 'vfr', '-frames:v', '1', '-update', '1'];
+    return ['-map', `0:${videoStream.index}`, '-fps_mode', 'vfr', '-frames:v', '1', '-update', '1'];
   }
 
   getFilterOptions(videoStream: VideoStreamInfo): string[] {
