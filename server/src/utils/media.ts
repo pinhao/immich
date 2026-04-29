@@ -430,7 +430,7 @@ export class ThumbnailConfig extends BaseConfig {
   }
 
   getBaseOutputOptions() {
-    return ['-map', `0:${videoStream.index}`, '-fps_mode', 'vfr', '-frames:v', '1', '-update', '1'];
+    return ['-fps_mode', 'vfr', '-frames:v', '1', '-update', '1'];
   }
 
   getFilterOptions(videoStream: VideoStreamInfo): string[] {
